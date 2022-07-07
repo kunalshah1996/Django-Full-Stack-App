@@ -1,0 +1,51 @@
+{% extends 'main.html' %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PICARD</title>
+</head>
+
+<body>
+
+    {% block content %}
+
+    <h1>Concepts</h1>
+    <div style="margin-left:20px">
+        <form action='/' method="GET">
+            <input type="text" placeholder="Enter Concept Name" , name="concept_name" />
+            <input type="submit" />
+
+        </form>
+    </div>
+    <div style="margin-top:10px;height:400px; max-height:500px;">
+        <form method="POST" action=''>
+            {% csrf_token %}
+            <table style="border: 1px solid; width: 100%;
+        border-collapse:collapse;">
+                <tr>
+                    <th></th>
+                    <th style=" border: 1px solid;">Concept ID</th>
+                    <th style="border: 1px solid;">Concept Name</th>
+                </tr>
+
+                {% for entry in data %}
+                <tr>
+                    <td style="border: 1px solid;"><input type="checkbox" id="concept_id" name="concept_id__in"
+                            value={{entry.concept_id}} /></td>
+                    <td style="border: 1px solid;">{{entry.concept_id}}</td>
+                    <td style="border: 1px solid;">{{entry.concept_name}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    {% endblock %}
+</body>
+
+</html>
